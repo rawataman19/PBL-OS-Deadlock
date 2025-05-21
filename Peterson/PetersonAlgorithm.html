@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="PetersonAlgorithm.js"></script>
+        <link rel="stylesheet" href="PetersonAlgorithm.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="heading row">
+                <div class="center col-md-6 col-sm-6">
+                    <h1>Peterson's Algorithm</h1>
+                </div>
+            </div>
+        </div>
+        <div id="processCon">
+            <div id="stage">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 10px;justify-content: center; font-size: auto;  background-color: #a7a4a4;">PROCESS</span>
+            </div>
+            <div id="entry">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 10px;justify-content: center; font-size: auto;  background-color: #a7a4a4;">ENTRY</span>
+            </div>
+            <div id="critical">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 10px;justify-content: center; font-size: auto;  background-color: #a7a4a4;">CRITICAL</span>
+
+            </div>
+            <div id="exit">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 10px;justify-content: center; font-size: auto;  background-color: #a7a4a4;">EXIT</span>
+            </div>
+            <div class="space" id="space"></div>
+            
+            <div id="activity">
+                <!-- <div>Process Description</div> -->
+                
+                <div id="status">
+                    <ol id="slist">
+    
+                    </ol>
+                </div>
+
+                <div class="properties" id="properties">
+                    <form action="" name="Prop" class="Prop">
+                        <table class="tb" >
+                            <!-- <tr>
+                                <th colspan="2"> Properties </th>
+                            </tr> -->
+        
+                            <tr>
+                                <td> Mutual Exclusion</td>
+                                <td style="padding-left: 50px;"> <img src="../images/success_img.png" alt="" style="border-radius: 50%;"> </td>
+                            </tr>
+        
+                            <tr>
+                                <td> Bounded Waiting </td>
+                                <td style="padding-left: 50px;"> <img src="../images/error.png" alt="" style="border-radius: 50%;"> </td>
+                            </tr>
+        
+                            <tr>
+                                <td> Progress</td>
+                                <td style="padding-left: 50px;"> <img src="../images/success_img.png" alt="" style="border-radius: 50%;"> </td>
+                            </tr>
+        
+                            <tr>
+                                <td> Deadlock </td>
+                                <td style="padding-left: 50px;"> <img src="../images/error.png" alt="" style="border-radius: 50%;"> </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="mutex">
+            <span>&nbsp;&emsp;&emsp;&emsp;&nbsp;</span><span id="val"></span>
+            <div id="start">
+                <button id="strbtn">START</button>
+                <button onclick="window.location.reload()" class="reset" id="reset">RESET</button>
+                <a href="../homepage.html"><button id="home">HOME</button></a>
+            </div>
+        </div>
+            
+            
+            
+        
+        
+
+
+    </body>
+</html>

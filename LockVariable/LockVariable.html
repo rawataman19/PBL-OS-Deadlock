@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="LockVariable.js"></script>
+        <link rel="stylesheet" href="LockVariable.css">
+    </head>
+    <body>
+        <div class="container"></div>
+    <div class="heading row">
+        <div class="center col-md-6 col-sm-6">
+            <h1>Lock Variable</h1>
+        </div>
+    </div>
+        <div id="processCon">
+            <div id="stage">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 15px;justify-content: center; font-size: auto; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: bold;font-size: 20px;  background-color: rgb(243, 211, 241);">PROCESS</span>
+            </div>
+            <div id="entry">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 15px;justify-content: center; font-size: auto; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: bold;font-size: 20px;  background-color: rgb(243, 211, 241);">ENTRY</span>
+            </div>
+            <div id="critical">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 15px;justify-content: center; font-size: auto; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: bold;font-size: 20px;  background-color: rgb(243, 211, 241);">CRITICAL</span>
+
+            </div>
+            <div id="exit">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 15px;justify-content: center; font-size: auto; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: bold;font-size: 20px;  background-color: rgb(243, 211, 241);">EXIT</span>
+            </div>
+            <div class="space" id="space"></div>
+            
+            <div id="activity">
+                <!-- <div>Process Description</div> -->
+                
+                <div id="status">
+                    <ol id="slist">
+    
+                    </ol>
+                </div>
+
+                <div class="properties" id="properties">
+                    <form action="" name="Prop" class="Prop">
+                        <table class="tb" >
+                            <tr>
+                                <td> Mutual Exclusion</td>
+                                <td style="padding-left: 50px;"> <img src="../images/error.png" alt="" style="border-radius: 50%;"> </td>
+                            </tr>
+
+                            <tr>
+                                <td> Bounded Waiting </td>
+                                <td style="padding-left: 50px;"> <img src="../images/error.png" alt="" style="border-radius: 50%;"> </td>
+                            </tr>
+
+                            <tr>
+                                <td> Progress</td>
+                                <td style="padding-left: 50px;"> <img src="../images/success_img.png" alt="" style="border-radius: 50%;"> </td>
+                            </tr>
+
+                            <tr>
+                                <td> Deadlock </td>
+                                <td style="padding-left: 50px;"> <img src="../images/error.png" alt="" style="border-radius: 50%;"> </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="lock">
+            <span>Lock&nbsp;:&nbsp;</span><span id="val"></span>
+            <div id="start">
+                <button id="strbtn">START</button>
+                <button onclick="window.location.reload()" class="reset" id="reset">RESET</button>
+                <a href="../homepage.html"><button id="home">HOME</button></a>
+            </div>
+        </div>
+
+
+    </body>
+</html>

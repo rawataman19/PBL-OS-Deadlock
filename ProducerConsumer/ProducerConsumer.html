@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Producer-Consumer model</title>
+  <meta name="description" content="Producer-Consumer problem visualization">
+  <meta name="author" content="Ivan Velichko <iximiuz at gmail.com>">
+
+  <link rel="stylesheet" href="ProducerConsumer.css">
+</head>
+
+<body>
+  <div class="heading row">
+    <div class="center col-md-6 col-sm-6">
+        <h1>Producer Consumer</h1>
+    </div>
+  </div>
+  <div class="row " >
+    <table class = "center">
+      
+      <tr>
+        <td>Produce chunks</td>
+        <td><input id="chunks-count" type="number" min="1" class="form-control form-control-sm"></td>
+      </tr>
+
+         <tr>
+        <td>Queue capacity</td>
+        <td><input id="queue-cap" type="number" min="1" max="6" class="form-control form-control-sm"></td>
+      </tr>
+
+      <!-- <tr>
+        <td>Consume chunks</td>
+        <td><input id="consume-count" type="number" min="1" class="form-control form-control-sm"></td>
+      </tr> -->
+      <tr>
+        <td>
+          <button id="options-apply" class="">APPLY</button> 
+          <button onclick="window.location.reload()" class="reset" id="reset">RESET</button>
+          <a href="../homepage.html"><button id="home">HOME</button></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+                SPEED ::
+        </td>
+        <td>
+          <a href="javascript: void 0" id="preset-fpsc" class="btn-preset">Fast&rarr;Slow</a> / <a href="javascript: void 0" id="preset-spfc" class="btn-preset">Slow&rarr;Fast</a> / <a href="javascript: void 0" id="preset-random" class="btn-preset">Random</a>
+        </td>
+      </tr>
+    </table>
+     
+    
+  </div>
+
+  <div id="canvas-container">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <script src="ProducerConsumer.js"></script>
+  <script src="ProducerConsumer1.js"></script>
+</body>
+</html>
+

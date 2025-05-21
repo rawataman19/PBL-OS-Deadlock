@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    background-color: rgb(39, 46, 46);
+    color: rgb(243, 211, 241);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: darkgray;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px #000000;
+}
+
+h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    font-size: 45px;
+    font-weight: 900;
+    text-shadow: 3px 3px 5px #000000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-section {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+label {
+    font-size: 18px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #777777;
+    padding: 8px;
+    text-align: center;
+    color: rgb(243, 211, 241);
+}
+
+th {
+    background-color: #aa1446;
+    color: white;
+}
+
+input {
+    width: 60px;
+    padding: 5px;
+    background-color: #333333;
+    color: white;
+    border: 1px solid #777777;
+    border-radius: 5px;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    background-color: #aa1446;
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #8b1038;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.safe {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(243, 211, 241);
+}
+
+.unsafe {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: rgb(243, 211, 241);
+}

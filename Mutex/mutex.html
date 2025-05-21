@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="mutex.js"></script>
+        <link rel="stylesheet" href="mutex.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="heading row">
+                <div class="center col-md-6 col-sm-6">
+                    <h1>Mutex</h1>
+                </div>
+                <div class="properties-header">
+                    <span>Properties: </span>
+                    <span id="prop-val">
+                        Mutual Exclusion: <img src="../images/success_img.png" alt="" class="prop-icon">
+                        Bounded Waiting: <img src="../images/success_img.png" alt="" class="prop-icon">
+                        Progress: <img src="../images/success_img.png" alt="" class="prop-icon">
+                        Deadlock: <img src="../images/error.png" alt="" class="prop-icon">
+                    </span>
+                </div>
+            </div>
+            <div class="controls">
+                <label for="numProcesses">Number of Processes:</label>
+                <input type="number" id="numProcesses" min="1" max="10" value="0">
+                <label for="numMutexes">Number of Mutexes:</label>
+                <input type="number" id="numMutexes" min="1" max="5" value="0">
+                <button id="strbtn">START</button>
+                <button id="stpbtn">STOP</button>
+                <button onclick="window.location.reload()" class="reset" id="reset">RESET</button>
+                <a href="../homepage.html"><button id="home">HOME</button></a>
+            </div>
+        </div>
+        <div id="processCon">
+            <div id="stage">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 10px;justify-content: center; font-size: auto; background-color: #a7a4a4;">PROCESS</span>
+            </div>
+            <div id="entry">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 10px;justify-content: center; font-size: auto; background-color: #a7a4a4;">ENTRY</span>
+            </div>
+            <div id="critical">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 10px;justify-content: center; font-size: auto; background-color: #a7a4a4;">CRITICAL</span>
+            </div>
+            <div id="exit">
+                <span style="height:35px; width: 100%; display: flex; padding-top: 10px;justify-content: center; font-size: auto; background-color: #a7a4a4;">EXIT</span>
+            </div>
+            <div class="space" id="space"></div>
+            <div id="activity">
+                <div id="status">
+                    <ol id="slist"></ol>
+                </div>
+            </div>
+        </div>
+        <div id="mutex">
+            <span>Mutexes: </span><span id="val"></span>
+        </div>
+    </body>
+</html>

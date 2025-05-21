@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Deadlock Visualization </title>
+</head>
+<body>
+    <div class="container"></div>
+        <div class="heading row">
+            <div class="center col-md-6 col-sm-6">
+                <h1>Deadlock And Concurrency Algorithms</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="serviceBox">
+                    <span class="service-icon">1</span>
+                    <h3 class="title">Bankers Algorithm</h3>
+                    <p class="description">
+                        The banker's algorithm is a resource allocation and deadlock avoidance algorithm,
+                        that tests for safety by simulating the allocation for predetermined maximum possible amounts of all resources, 
+                        then makes an “s-state” check to test for possible activities, before deciding whether allocation should be allowed.
+                    </p>
+                    <a href="BankersAlgorithm/BankersAlgorithm.html" class="read">Visualization</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="serviceBox">
+                    <span class="service-icon">2</span>
+                    <h3 class="title">Weight for Graph Algorithm</h3>
+                    <p class="description">
+                        The banker's algorithm is a resource allocation and deadlock avoidance algorithm,
+                        that tests for safety by simulating the allocation for predetermined maximum possible amounts of all resources, 
+                        then makes an “s-state” check to test for possible activities, before deciding whether allocation should be allowed.
+                    </p>
+                    <a href="WeightforGraph/weightforGraph.html" class="read">Visualization</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="serviceBox">
+                    <span class="service-icon">3</span>
+                    <h3 class="title">MuteX</h3>
+                    <p class="description">
+                        Mutex is a mutual exclusion object that synchronizes access to a resource.
+                        It is created with a unique name at the start of a program.
+                        The Mutex is a locking mechanism that makes sure only one thread can acquire the Mutex at a time and enter the critical section.
+                    </p>
+                    <a href="Mutex/mutex.html" class="read align-bottom">Visualization</a>
+                    <!-- <a href="https://www.gatevidyalay.com/lock-variable-process-synchronization/" class="read align-bottom">Learn More</a> -->
+                </div>
+            </div>
+
+            
+           
+
+            <div class="col-md-4 col-sm-6">
+                <div class="serviceBox">
+                    <span class="service-icon">3</span>
+                    <h3 class="title">Producer And Consumer</h3>
+                    <p class="description">
+                        The producer consumer problem is a synchronization problem. 
+                        There is a fixed size buffer and the producer produces items and enters them into the buffer.
+                        The consumer removes the items from the buffer and consumes them.
+                    </p>
+                    <a href="ProducerConsumer/ProducerConsumer.html" class="read">Visualization</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="serviceBox">
+                    <span class="service-icon">4</span>
+                    <h3 class="title">Peterson's Algorithm</h3>
+                    <p class="description">
+                        Peterson's algorithm (or Peterson's solution) is a concurrent programming algorithm for mutual exclusion that allows 
+                        two or more processes to share a single-use resource without conflict, using only shared memory for communication. 
+                    </p>
+                    <a href="Peterson/PetersonAlgorithm.html" class="read">Visualization</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="serviceBox">
+                    <span class="service-icon">4</span>
+                    <h3 class="title">Lock Variable</h3>
+                    <p class="description">
+                        Two values of lock can be possible, either 0 or 1. 
+                        Lock value 0 means that the critical section is vacant while the lock value 1 means that it is occupied. 
+                        A process which wants to get into the critical section first checks the value of the lock variable.
+                    </p>
+                    <a href="LockVariable/LockVariable.html" class="read align-bottom">Visualization</a>
+                </div>
+            </div>
+     
+                    
+        </div>
+ 
+        </div>
+    </div>
+
+
+    
+</body>
+</html>
