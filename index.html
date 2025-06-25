@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadlock Visualization</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="homepage.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="heading row">
+            <div class="center col-12">
+                <h1>Deadlock Detection , Visualization And Concurrency Algorithms</h1>
+            </div>
+        </div>
+
+        <div class="row px-4">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="serviceBox">
+                    <span class="service-icon">1</span>
+                    <h3 class="title">Banker's Algorithm</h3>
+                    <p class="description">
+                        The banker's algorithm is a resource allocation and deadlock avoidance algorithm
+                        that tests for safety by simulating the allocation for predetermined maximum possible amounts of all resources.
+                    </p>
+                    <a href="BankersAlgorithm/BankersAlgorithm.html" class="read">Visualization</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="serviceBox">
+                    <span class="service-icon">2</span>
+                    <h3 class="title">Wait-for Graph</h3>
+                    <p class="description">
+                        This algorithm helps in visualizing resource allocation and potential deadlocks using graph theory,
+                        where processes and resources are represented as nodes.
+                    </p>
+                    <a href="WeightforGraph/weightforGraph.html" class="read">Visualization</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="serviceBox">
+                    <span class="service-icon">3</span>
+                    <h3 class="title">Mutex</h3>
+                    <p class="description">
+                        Mutex (Mutual Exclusion) synchronizes access to a resource.
+                        Only one thread can acquire the Mutex at a time, preventing race conditions in critical sections.
+                    </p>
+                    <a href="Mutex/mutex.html" class="read">Visualization</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="serviceBox">
+                    <span class="service-icon">4</span>
+                    <h3 class="title">Producer-Consumer</h3>
+                    <p class="description">
+                        The producer-consumer problem involves synchronizing processes
+                        to avoid race conditions and ensure correct communication via a shared buffer.
+                    </p>
+                    <a href="ProducerConsumer/ProducerConsumer.html" class="read">Visualization</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="serviceBox">
+                    <span class="service-icon">5</span>
+                    <h3 class="title">Peterson's Algorithm</h3>
+                    <p class="description">
+                        Peterson's algorithm is used for mutual exclusion in concurrent programming.
+                        It allows two processes to share a resource without conflict using shared memory.
+                    </p>
+                    <a href="Peterson/PetersonAlgorithm.html" class="read">Visualization</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="serviceBox">
+                    <span class="service-icon">6</span>
+                    <h3 class="title">Deadlock Prevention</h3>
+                    <p class="description">
+                       Deadlock happens only when four necessary conditions occur simultaneously. To prevent a deadlock, the OS must eliminate at least one of these conditions.
+                    </p>
+                    <a href="Deadlock_prevention/prevention.html" class="read">Visualization</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="serviceBox">
+                    <span class="service-icon">7</span>
+                    <h3 class="title">Quiz</h3>
+                    <p class="description">
+                        Ready to test your knowledge? Take our interactive quiz to challenge your understanding of deadlock, concurrency, and synchronization algorithms.
+                    </p>
+                    <a href="quiz/quiz.html" class="read">Take Quiz</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="serviceBox">
+                    <span class="service-icon">8</span>
+                    <h3 class="title">About US</h3>
+                    <p class="description">
+                        <p class="title">Naman Manudi</p>
+                        <br>
+                        <p class="title">Sachin Panwar</p>
+                        <br>
+                        <p class="title">Aman Singh Rawat</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
