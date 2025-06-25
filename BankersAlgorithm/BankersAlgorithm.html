@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banker's Algorithm - Deadlock Detection</title>
+    <link rel="stylesheet" href="BankersAlgorithm.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Banker's Algorithm Simulator</h1>
+        
+        <div class="input-section">
+            <h3>Enter Number of Resources and Processes</h3>
+            <label>Number of Resources: </label>
+            <input type="number" id="numResources" min="1" value="3">
+            <label>Number of Processes: </label>
+            <input type="number" id="numProcesses" min="1" value="5">
+            <button onclick="generateInputFields()">Generate Input Fields</button>
+        </div>
+
+        <div id="inputFields"></div>
+        <button onclick="checkSafety()">Check System Safety</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function generateInputFields() {
+            const numResources = parseInt(document.getElementById('numResources').value);
+            const numProcesses = parseInt(document.getElementById('numProcesses').value);
+            let html = '';
+
+            // Generate Allocation Table
+            html += '<h3>Allocation Matrix</h3><table>';
+            html += '<tr><th>Process</th>';
+            for (let r = 0; r < numResources; r++) {
+                html += `<th>R${r} Alloc</th>`;
+            }
+            html += '</tr>';
+            for (let p = 0; p < numProcesses; p++) {
+                html += `<tr><td>P${p}</td>`;
+                for (let r = 0; r < numResources; r++) {
+                    html += `<td><input type="number" min="0" id="alloc_${p}_${r}" value="0"></td>`;
+                }
+                html += '</tr>';
+            }
+            html += '</table>';
+
+            // Generate Max Table
+            html += '<h3>Max Matrix</h3><table>';
+            html += '<tr><th>Process</th>';
+            for (let r = 0; r < numResources; r++) {
+                html += `<th>R${r} Max</th>`;
+            }
+            html += '</tr>';
+            for (let p = 0; p < numProcesses; p++) {
+                html += `<tr><td>P${p}</td>`;
+                for (let r = 0; r < numResources; r++) {
+                    html += `<td><input type="number" min="0" id="max_${p}_${r}" value="0"></td>`;
+                }
+                html += '</tr>';
+            }
+            html += '</table>';
+
+            // Generate Available Resources
+            html += '<h3>Available Resources</h3><table><tr>';
+            for (let r = 0; r < numResources; r++) {
+                html += `<th>R${r}</th>`;
+            }
+            html += '</tr><tr>';
+            for (let r = 0; r < numResources; r++) {
+                html += `<td><input type="number" min="0" id="avail_${r}" value="0"></td>`;
+            }
+            html += '</tr></table>';
+
+            document.getElementById('inputFields').innerHTML = html;
+        }
+
+        function checkSafety() {
+            const numResources = parseInt(document.getElementById('numResources').value);
+            const numProcesses = parseInt(document.getElementById('numProcesses').value);
+
+            // Read input values
+            const allocation = [];
+            const max = [];
+            const available = [];
+
+            // Get allocation matrix
+            for (let p = 0; p < numProcesses; p++) {
+                allocation[p] = [];
+                for (let r = 0; r < numResources; r++) {
+                    allocation[p][r] = parseInt(document.getElementById(`alloc_${p}_${r}`).value);
+                }
+            }
+
+            // Get max matrix
+            for (let p = 0; p < numProcesses; p++) {
+                max[p] = [];
+                for (let r = 0; r < numResources; r++) {
+                    max[p][r] = parseInt(document.getElementById(`max_${p}_${r}`).value);
+                }
+            }
+
+            // Get available resources
+            for (let r = 0; r < numResources; r++) {
+                available[r] = parseInt(document.getElementById(`avail_${r}`).value);
+            }
+
+            // Calculate need matrix
+            const need = [];
+            for (let p = 0; p < numProcesses; p++) {
+                need[p] = [];
+                for (let r = 0; r < numResources; r++) {
+                    need[p][r] = max[p][r] - allocation[p][r];
+                }
+            }
+
+            // Banker's Algorithm implementation
+            const work = [...available];
+            const finish = new Array(numProcesses).fill(false);
+            const safeSequence = [];
+            let found;
+
+            do {
+                found = false;
+                for (let p = 0; p < numProcesses; p++) {
+                    if (!finish[p] && need[p].every((val, i) => val <= work[i])) {
+                        // Pretend to allocate resources
+                        for (let r = 0; r < numResources; r++) {
+                            work[r] += allocation[p][r];
+                        }
+                        safeSequence.push(p);
+                        finish[p] = true;
+                        found = true;
+                    }
+                }
+            } while (found);
+
+            
+            const resultDiv = document.getElementById('result');
+            if (finish.every(val => val)) {
+                resultDiv.className = 'safe';
+                resultDiv.innerHTML = `<strong>System is in safe state!</strong><br>
+                                      Safe sequence: ${safeSequence.map(p => `P${p}`).join(' → ')}`;
+            } else {
+                resultDiv.className = 'unsafe';
+                resultDiv.innerHTML = `<strong>Deadlock will occur!</strong><br>
+                                      System is in unsafe state`;
+            }
+        }
+    </script>
+</body>
+</html>

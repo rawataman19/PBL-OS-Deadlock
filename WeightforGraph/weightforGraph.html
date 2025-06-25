@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deadlock Detection (Wait-For Graph)</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .heading {
+      height: 170px;
+      position: relative;
+      background-color: #03dac6;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .heading .center {
+      text-align: center;
+    }
+
+    .heading .center h1 {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: #121212;
+      font-size: 45px;
+      font-weight: 900;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #1e1e1e;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(3, 218, 198, 0.5);
+    }
+
+    #incon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #292929;
+      border-radius: 10px;
+      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .input-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    input {
+      flex: 1 1 150px;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #333333;
+      color: white;
+      border: 1px solid #00bfa5;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      border-color: #03dac6;
+      box-shadow: 0 0 8px rgba(3, 218, 198, 0.6);
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      color: #121212;
+      background-color: #03dac6;
+      border: none;
+      border-radius: 8px;
+      margin: 5px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #00bfa5;
+      transform: translateY(-2px);
+    }
+
+    #network {
+      width: 100%;
+      height: 500px;
+      border: 2px solid #03dac6;
+      background: #1e1e1e;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(3, 218, 198, 0.3);
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #03dac6;
+      text-align: center;
+      background-color: #292929;
+      border-radius: 8px;
+      border-left: 5px solid #03dac6;
+      box-shadow: 0 0 8px rgba(3, 218, 198, 0.2);
+    }
+
+    /* Vis.js Customizations for theme */
+    .vis-network .vis-node {
+      border-color: #03dac6 !important;
+      background-color: #bb86fc !important;
+      color: #121212 !important;
+    }
+
+    .vis-network .vis-edge {
+      color: #ffffff !important;
+    }
+
+    .vis-network .vis-label {
+      color: #ffffff !important;
+    }
+
+    .vis-network .vis-arrow {
+      fill: #03dac6 !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .heading .center h1 {
+        font-size: 35px;
+      }
+
+      .container {
+        margin: 20px auto;
+        padding: 15px;
+      }
+
+      .input-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      input, button {
+        width: 100%;
+        flex: none;
+        margin: 5px 0;
+      }
+
+      #incon {
+        padding: 15px;
+      }
+
+      #network {
+        height: 400px;
+      }
+
+      #result {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .heading .center h1 {
+        font-size: 28px;
+      }
+
+      .container {
+        margin: 10px auto;
+        padding: 10px;
+      }
+
+      #network {
+        height: 300px;
+      }
+
+      #result {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="heading">
+    <div class="center">
+      <h1>🔗 Deadlock Detection (Wait-For Graph)</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="incon">
+      <div class="input-group">
+        <input type="text" id="from" placeholder="From (e.g., p1)">
+        <input type="text" id="to" placeholder="To (e.g., p2)">
+      </div>
+      <div class="input-group">
+        <button onclick="addEdge()">Add Edge</button>
+        <button onclick="deleteEdge()">Delete Edge</button>
+        <button id="detectDeadlockBtn" onclick="detectDeadlock()">Detect Deadlock</button>
+        <button onclick="resetGraph()">Reset Graph</button>
+        <button onclick="zoomIn()">+ Zoom In</button>
+        <button onclick="zoomOut()">- Zoom Out</button>
+      </div>
+    </div>
+
+    <div class="w-full max-w-4xl">
+      <div id="network"></div>
+      <p id="result"></p>
+    </div>
+  </div>
+
+  <script>
+    const nodes = new vis.DataSet();
+    const edges = new vis.DataSet(); // Stores all edges for the Wait-For Graph
+
+    // Global variable to store cycle nodes if deadlock is found
+    let currentDeadlockCycleNodes = new Set();
+
+    const container = document.getElementById("network");
+    const data = { nodes, edges };
+    const options = {
+      edges: {
+        arrows: { to: { enabled: true, scaleFactor: 1 } },
+        font: { align: 'top', size: 14, color: 'white' },
+        color: { color: '#03dac6', highlight: '#00bfa5', hover: '#00bfa5' },
+        width: 2
+      },
+      nodes: {
+        shape: 'ellipse', // All nodes are processes
+        color: { background: '#bb86fc', border: '#03dac6', highlight: { background: '#9e73d6', border: '#00bfa5' } },
+        font: { size: 16, color: '#121212' },
+        borderWidth: 2,
+        shadow: true
+      },
+      physics: {
+        enabled: true,
+        stabilization: { iterations: 2000 },
+        barnesHut: {
+          gravitationalConstant: -2000,
+          centralGravity: 0.3,
+          springLength: 200,
+          springConstant: 0.04,
+          damping: 0.09,
+          avoidOverlap: 0.5
+        }
+      },
+      interaction: {
+        navigationButtons: true,
+        keyboard: true,
+        zoomView: true
+      }
+    };
+    const network = new vis.Network(container, data, options);
+
+    // Zoom Functions
+    function zoomIn() {
+      const scale = network.getScale() * 1.2;
+      network.moveTo({ scale: scale });
+    }
+
+    function zoomOut() {
+      const scale = network.getScale() / 1.2;
+      network.moveTo({ scale: scale });
+    }
+
+    // Add Edge Function (All edges are "request" in WFG)
+    function addEdge() {
+      const from = document.getElementById("from").value.trim();
+      const to = document.getElementById("to").value.trim();
+      const type = "request"; // Hardcoded as all edges are request edges
+      const id = from + "_" + to + "_" + type;
+
+      if (!from || !to) {
+        document.getElementById("result").innerText = "⚠️ Please enter valid 'From' and 'To' nodes.";
+        return;
+      }
+      if (from === to) {
+        document.getElementById("result").innerText = "⚠️ An edge cannot be from a node to itself.";
+        return;
+      }
+
+      // Validate that both nodes are processes (start with 'p' or 'P')
+      const fromIsProcess = from.toLowerCase().startsWith('p');
+      const toIsProcess = to.toLowerCase().startsWith('p');
+
+      if (!fromIsProcess || !toIsProcess) {
+        document.getElementById("result").innerText = "⚠️ Both 'From' and 'To' nodes must be processes (e.g., p1, p2).";
+        return;
+      }
+
+      // Add nodes if they don't exist (all nodes are processes, so use ellipse shape)
+      if (!nodes.get(from)) nodes.add({ id: from, label: from, shape: 'ellipse' });
+      if (!nodes.get(to)) nodes.add({ id: to, label: to, shape: 'ellipse' });
+
+      // Check if the exact edge already exists
+      const existingEdges = edges.get({
+        filter: function (edge) {
+          return (edge.from === from && edge.to === to && edge.label === type);
+        }
+      });
+
+      if (existingEdges.length === 0) {
+        edges.add({ id, from, to, label: type });
+        document.getElementById("result").innerText = "✅ Edge added.";
+      } else {
+        document.getElementById("result").innerText = "⚠️ Edge already exists.";
+      }
+      currentDeadlockCycleNodes.clear();
+      resetNodeColors();
+    }
+
+    // Delete Edge Function
+    function deleteEdge() {
+      const from = document.getElementById("from").value.trim();
+      const to = document.getElementById("to").value.trim();
+      const type = "request"; // Hardcoded as all edges are request edges
+      const id = from + "_" + to + "_" + type;
+
+      if (edges.get(id)) {
+        edges.remove(id);
+        document.getElementById("result").innerText = "🗑️ Edge deleted.";
+
+        const checkNodes = [from, to];
+        checkNodes.forEach(nodeId => {
+          const connectedEdges = edges.get({
+            filter: function (edge) {
+              return edge.from === nodeId || edge.to === nodeId;
+            }
+          });
+          if (connectedEdges.length === 0) {
+            nodes.remove(nodeId);
+          }
+        });
+      } else {
+        document.getElementById("result").innerText = "⚠️ Edge not found. Please ensure 'From' and 'To' match an existing edge.";
+      }
+      currentDeadlockCycleNodes.clear();
+      resetNodeColors();
+    }
+
+    // Helper to reset all node colors to default
+    function resetNodeColors() {
+      const resetNodes = nodes.map(node => ({
+        ...node,
+        color: {
+          background: '#bb86fc',
+          border: '#03dac6',
+          highlight: { background: '#9e73d6', border: '#00bfa5' }
+        },
+        font: { color: '#121212' }
+      }));
+      nodes.update(resetNodes);
+    }
+
+    // Build Adjacency List for the Wait-For Graph
+    function buildWaitForGraph() {
+      const waitForAdjacencyList = {};
+      const allNodeIds = nodes.getIds();
+
+      // Initialize adjacency list for all nodes (all are processes)
+      allNodeIds.forEach(nodeId => {
+        waitForAdjacencyList[nodeId] = [];
+      });
+
+      // Populate adjacency list from edges (all edges are "request")
+      edges.forEach(edge => {
+        waitForAdjacencyList[edge.from].push(edge.to);
+      });
+
+      return waitForAdjacencyList;
+    }
+
+    // Deadlock Detection (DFS on WFG)
+    function detectDeadlock() {
+      currentDeadlockCycleNodes.clear();
+      resetNodeColors();
+      const waitForAdjacencyList = buildWaitForGraph();
+
+      const visited = {};
+      const recStack = {};
+      let deadlockFound = false;
+
+      // Initialize nodes for DFS
+      Object.keys(waitForAdjacencyList).forEach(nodeId => {
+        visited[nodeId] = false;
+        recStack[nodeId] = false;
+      });
+
+      // DFS for cycle detection
+      for (const nodeId of Object.keys(waitForAdjacencyList)) {
+        if (!visited[nodeId]) {
+          if (dfs(nodeId, [])) {
+            deadlockFound = true;
+          }
+        }
+      }
+
+      function dfs(node, path) {
+        visited[node] = true;
+        recStack[node] = true;
+        path.push(node);
+
+        for (const neighbor of waitForAdjacencyList[node]) {
+          if (!visited[neighbor]) {
+            if (dfs(neighbor, path)) {
+              return true;
+            }
+          } else if (recStack[neighbor]) {
+            const cycleStartIndex = path.indexOf(neighbor);
+            for (let i = cycleStartIndex; i < path.length; i++) {
+              currentDeadlockCycleNodes.add(path[i]);
+            }
+            return true;
+          }
+        }
+        path.pop();
+        recStack[node] = false;
+        return false;
+      }
+
+      if (deadlockFound) {
+        document.getElementById("result").innerText = "🔴 Deadlock Detected! (Cycle found in Wait-For Graph) Processes involved: " + Array.from(currentDeadlockCycleNodes).join(', ');
+        const updatedNodes = nodes.map(node => {
+          if (currentDeadlockCycleNodes.has(node.id)) {
+            return { ...node, color: { background: '#ff4d4d', border: '#a00' }, font: { color: 'white' } };
+          }
+          return node;
+        });
+        nodes.update(updatedNodes);
+      } else {
+        document.getElementById("result").innerText = "✅ No Deadlock Detected.";
+        resetNodeColors();
+      }
+    }
+
+    // Reset Graph
+    function resetGraph() {
+      nodes.clear();
+      edges.clear();
+      currentDeadlockCycleNodes.clear();
+      network.fit();
+      document.getElementById("result").innerText = "🔄 Graph reset.";
+      resetNodeColors();
+    }
+
+    // Initial fit
+    network.fit();
+  </script>
+</body>
+</html>

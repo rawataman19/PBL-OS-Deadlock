@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer-Consumer Visualization</title>
+    <link rel="stylesheet" href="ProducerConsumer.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Producer-Consumer Problem</h1>
+
+        <div class="controls-container">
+            <div class="control-group">
+                <label for="chunks-count">Chunks to Produce:</label>
+                <input id="chunks-count" type="number" min="1" value="10">
+            </div>
+            <div class="control-group">
+                <label for="queue-cap">Queue Capacity:</label>
+                <input id="queue-cap" type="number" min="1" max="8" value="4">
+            </div>
+            <div class="control-group main-actions">
+                <button id="options-apply">Apply</button>
+                <button id="reset">Reset</button>
+                <button id="pause-button">Pause/Resume</button>
+            </div>
+        </div>
+
+        <div class="presets">
+            <span>Speed Presets:</span>
+            <a href="javascript:void(0)" id="preset-fast-producer" class="btn-preset">Fast Producer</a> /
+            <a href="javascript:void(0)" id="preset-fast-consumer" class="btn-preset">Fast Consumer</a> /
+            <a href="javascript:void(0)" id="preset-slow-producer" class="btn-preset">Slow Producer</a> / <a href="javascript:void(0)" id="preset-slow-consumer" class="btn-preset">Slow Consumer</a> / <a href="javascript:void(0)" id="preset-random" class="btn-preset">Random</a>
+        </div>
+
+        <div id="canvas-container">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="ProducerConsumer.js"></script>
+</body>
+</html>

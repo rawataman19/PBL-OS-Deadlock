@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OS Concepts Quiz</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Operating Systems Concepts Quiz</h1>
+    
+    <div id="quiz-box">
+      <div id="question"></div>
+      <ul id="options"></ul>
+      
+      <div class="condition-selector">
+        <button id="prev">Prev</button>
+        <button id="next">Next</button>
+       <button id="skip">Skip</button>
+      <button id="submit">Submit</button> ```
+
+
+      </div>
+    </div>
+
+    <div id="output" style="display: none;">
+      <h2>Quiz Summary</h2>
+      <p>Total Questions: <span id="total"></span></p>
+      <p>Attempted: <span id="attempted"></span></p>
+      <p>Skipped: <span id="skipped"></span></p>
+      <p>Score: <span id="score"></span></p>
+      <button onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

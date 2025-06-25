@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peterson's Algorithm Visualization</title>
+    <link rel="stylesheet" href="PetersonAlgorithm.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Peterson's Algorithm</h1>
+
+        <div class="controls">
+            <button id="startButton">Start</button>
+            <button id="resetButton">Reset</button>
+        </div>
+
+        <div class="visualization-area">
+            <div class="section" id="ready-section">
+                <h2>Ready Queue</h2>
+                <div class="processes" id="ready-queue">
+                    </div>
+            </div>
+            <div class="section" id="critical-section-wrapper">
+                <h2>Critical Section</h2>
+                <div class="processes critical" id="critical-section">
+                     </div>
+            </div>
+            <div class="section" id="finished-section">
+                <h2>Finished</h2>
+                <div class="processes" id="finished-queue">
+                     </div>
+            </div>
+        </div>
+        
+        <div class="details-area">
+            <div class="output-log">
+                <h2>Activity Log</h2>
+                <ul id="log-list">
+                    <li>Simulation ready. Click Start.</li>
+                </ul>
+            </div>
+
+            <div class="properties">
+                <h2>Properties</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Mutual Exclusion</td>
+                            <td class="status-icon" id="prop-mutual-exclusion">✔️</td>
+                        </tr>
+                        <tr>
+                            <td>Progress</td>
+                            <td class="status-icon" id="prop-progress">✔️</td>
+                        </tr>
+                         <tr>
+                            <td>Bounded Waiting</td>
+                            <td class="status-icon" id="prop-bounded-waiting">✔️</td>
+                        </tr>
+                        <tr>
+                            <td>No Deadlock</td>
+                            <td class="status-icon" id="prop-deadlock">✔️</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="PetersonAlgorithm.js"></script>
+</body>
+</html>

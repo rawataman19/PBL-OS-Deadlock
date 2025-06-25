@@ -1,0 +1,133 @@
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .heading {
+            height: 170px;
+            position: relative;
+            background-color: #2f3235;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+
+        .heading .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%; /* Ensure it takes full width */
+        }
+
+        .heading .center h1 {
+            font-size: 42px;
+            color: #03dac6;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px #000000;
+            font-family: 'Sansita Swashed', cursive;
+        }
+
+        .serviceBox {
+            background: #028670;
+            padding: 30px 25px;
+            border-radius: 10px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            height: 100%; /* Make card height consistent in a row */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .serviceBox:hover {
+            background: #2b2a28;
+            transform: translateY(-5px);
+        }
+
+        .serviceBox .service-icon {
+            width: 90px;
+            height: 90px;
+            line-height: 82px;
+            border-radius: 50%;
+            background: #fff;
+            display: inline-block;
+            font-size: 42px;
+            font-weight: bold;
+            color: #028670;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .serviceBox .title {
+            font-size: 28px;
+            color: #ffffff;
+            margin: 30px 0 15px;
+            text-shadow: 1px 1px 3px #000000;
+            font-weight: bold;
+        }
+
+        .serviceBox .description {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 500;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px #000000;
+            flex-grow: 1; /* Allow description to fill available space */
+        }
+
+        .serviceBox .read {
+            display: inline-block;
+            width: 160px;
+            height: 48px;
+            font-size: 16px;
+            color: #028670;
+            background: #ffffff;
+            line-height: 48px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease-in-out;
+            margin-top: 20px; /* Add space above the button */
+        }
+
+        .serviceBox .read:hover {
+            color: #fff;
+        }
+
+        .serviceBox .read:before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #028670;
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .serviceBox .read:hover:before {
+            top: 0;
+        }
+
+        /* Responsive Adjustments */
+        @media screen and (max-width: 991px) {
+            .heading .center h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .heading .center h1 {
+                font-size: 30px;
+            }
+        }

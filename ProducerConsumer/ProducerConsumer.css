@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 25px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #03dac6;
+}
+
+h1 {
+    text-align: center;
+    color: #03dac6;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* Controls Section */
+.controls-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.control-group label {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #bb86fc;
+}
+
+.control-group input {
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    background: #2c2c2c;
+    color: white;
+    font-size: 1em;
+}
+
+.main-actions {
+    display: flex;
+    gap: 10px; /* Spacing between buttons */
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.main-actions button {
+    padding: 10px 20px;
+    background: #03dac6;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #000;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.main-actions button:hover {
+    background: #00bfa5;
+}
+
+/* Speed Presets */
+.presets {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.btn-preset {
+    text-decoration: none;
+    color: #03dac6;
+    font-weight: bold;
+    margin: 0 5px;
+    transition: color 0.3s;
+}
+
+.btn-preset:hover {
+    color: #00bfa5;
+}
+
+/* Canvas Visualization */
+#canvas-container {
+    text-align: center;
+    width: 100%;
+}
+
+#canvas {
+    background-color: #292929;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    display: block;
+}
