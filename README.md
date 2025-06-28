@@ -36,16 +36,11 @@ It helps students and learners understand how deadlocks are prevented, avoided, 
 
 ## 🚀 Live Demo
 
-[🌐 View Project on Vercel](https://your-deployment-url.vercel.app)  
+[🌐 View Project on Vercel](https://pbl-os-deadlock.vercel.app/)  
 *(replace this with your actual Vercel URL)*
 
 ---
 
-## 📷 Screenshots
-
-| Home Page | Simulation Example |
-|-----------|--------------------|
-| ![Home](images/home.png) | ![Banker's Algorithm](images/banker.png) |
 
 ---
 
